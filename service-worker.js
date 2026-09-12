@@ -1,4 +1,4 @@
-const CACHE_VERSION = "ibadah-2026.09.12.1";
+const CACHE_VERSION = "ibadah-2026.09.12.3";
 
 const APP_SHELL = [
   "./",
@@ -38,25 +38,28 @@ self.addEventListener("message", event => {
 });
 
 self.addEventListener("fetch", event => {
-  const req = event.request;
+  const request = event.request;
 
-  if (req.method !== "GET") return;
+  if (request.method !== "GET") return;
 
-  if (req.mode === "navigate") {
+  // عدم اعتراض طلبات Google Sheets وApps Script الخارجية
+  if (new URL(request.url).origin !== self.location.origin) return;
+
+  if (request.mode === "navigate") {
     event.respondWith(
-      fetch(req, { cache: "no-store" })
-        .then(res => {
-          const copy = res.clone();
+      fetch(request, { cache: "no-store" })
+        .then(response => {
+          const copy = response.clone();
 
           caches
             .open(CACHE_VERSION)
-            .then(cache => cache.put(req, copy));
+            .then(cache => cache.put(request, copy));
 
-          return res;
+          return response;
         })
         .catch(() =>
           caches
-            .match(req)
+            .match(request)
             .then(cached => cached || caches.match("./girl.html"))
         )
     );
@@ -65,19 +68,21 @@ self.addEventListener("fetch", event => {
   }
 
   event.respondWith(
-    caches.match(req).then(cached => {
+    caches.match(request).then(cached => {
       if (cached) return cached;
 
-      return fetch(req).then(res => {
-        if (!res || res.status !== 200) return res;
+      return fetch(request).then(response => {
+        if (!response || response.status !== 200) {
+          return response;
+        }
 
-        const copy = res.clone();
+        const copy = response.clone();
 
         caches
           .open(CACHE_VERSION)
-          .then(cache => cache.put(req, copy));
+          .then(cache => cache.put(request, copy));
 
-        return res;
+        return response;
       });
     })
   );
