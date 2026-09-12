@@ -125,7 +125,7 @@ tr.tr-day td.pts-total{background:var(--primary-dark);font-size:11px;font-weight
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--primary-dark);color:#fff;font-size:13px;padding:9px 22px;border-radius:30px;opacity:0;transition:all .3s;pointer-events:none;z-index:9999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
-<link rel="manifest" href="manifest.json?v=2026.09.12.2">
+<link rel="manifest" href="manifest.json?v=2026.09.12.3">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -140,7 +140,7 @@ tr.tr-day td.pts-total{background:var(--primary-dark);font-size:11px;font-weight
 .update-toast button{background:#fff;color:#0f4a28;border:none;border-radius:9px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Amiri',serif!important;white-space:nowrap}
 </style>
 <script>
-window.APP_VERSION = "2026.09.12.2";
+window.APP_VERSION = "2026.09.12.3";
 </script>
 </head>
 <body>
@@ -159,7 +159,7 @@ window.APP_VERSION = "2026.09.12.2";
     <div class="sec-title">القيام</div>
     <div class="row"><span>قيام الليل — ركعتان</span><span>5 نقاط</span></div>
     <div class="sec-title">الصلاة</div>
-    <div class="row"><span>ركعات الضحى / الأوابين</span><span>5 نقاط لكل عبادة</span></div>
+    <div class="row"><span>ركعات الضحى</span><span>5 نقاط</span></div>
     <div class="row"><span>فروض الصلاة</span><span>حتى 5 نقاط — قابلة للتعديل</span></div>
     <div class="row"><span>سنن الصلوات</span><span>حتى 5 نقاط — قابلة للتعديل</span></div>
     <div style="font-size:9px;color:var(--mu);line-height:1.6;margin:2px 8px 5px">٢ الفجر، ٤ الظهر القبلية، ٤ الظهر البعدية، ٤ العصر، ٢ المغرب، ٢ العشاء، و٣ الشفع والوتر (المجموع ٢١ ركعة)</div>
@@ -250,7 +250,6 @@ const ROWS=[
   {cat:'القرآن',ibada:'حفظ قرآن',pts:5,fixed:true},
   {cat:'القيام',ibada:'قيام الليل — ركعتان',pts:5,fixed:true},
   {cat:'الصلاة',ibada:'ركعات ضحى',pts:5,fixed:true},
-  {cat:'الصلاة',ibada:'ركعات أوابين',pts:5,fixed:true},
   {cat:'الصلاة',ibada:'فروض الصلاة',pts:5,badil:'٣٣ الباقيات الصالحات عن كل صلاة وسنتها'},
   {cat:'الصلاة',ibada:'سنن الصلوات',pts:5,badil:'٣٣ الباقيات الصالحات عن كل صلاة وسنتها',note:'٢ الفجر، ٤ الظهر القبلية، ٤ الظهر البعدية، ٤ العصر، ٢ المغرب، ٢ العشاء، و٣ الشفع والوتر (المجموع ٢١ ركعة)'},
   {cat:'الذكر',ibada:'صلاة على الرسول ٢٠٠',pts:5,fixed:true,note:'١٠٠ صباحاً و١٠٠ مساءً'},
@@ -266,12 +265,12 @@ const IBADA_NOTES={
   'تهليل ٢٠٠':'١٠٠ صباحاً و١٠٠ مساءً',
 };
 
-const DAYS=10,SK='ibada_v14',NK='ibada_name_v14',EDITK='ibada_edit_v14',COUNTERK='ibada_counter_v14',GOALK='ibada_goals_v4';
+const DAYS=10,SK='ibada_v15',NK='ibada_name_v15',EDITK='ibada_edit_v15',COUNTERK='ibada_counter_v15',GOALK='ibada_goals_v5';
 let state={},editedPts={},counterVal=0,personalGoals={};
 
 const GOAL_ITEMS=[];
 const VARIABLE_BONUS_ROWS=new Set();
-const EDITABLE_BASIC_ROWS=new Set([9,10]);
+const EDITABLE_BASIC_ROWS=new Set([8,9]);
 const sk=(r,d)=>r+'-'+d;
 
 function calcPtsTotal(){
