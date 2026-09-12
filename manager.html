@@ -113,7 +113,7 @@ body{font-family:'Amiri',system-ui,Tahoma,sans-serif;background:var(--bg);color:
     <div class="sec-title">القيام</div>
     <div class="row"><span>قيام الليل — ركعتان</span><span>5 نقاط</span></div>
     <div class="sec-title">الصلاة</div>
-    <div class="row"><span>ركعات الضحى / الأوابين</span><span>5 نقاط لكل عبادة</span></div>
+    <div class="row"><span>ركعات الضحى</span><span>5 نقاط</span></div>
     <div class="row"><span>فروض الصلاة</span><span>حتى 5 نقاط — قابلة للتعديل</span></div>
     <div class="row"><span>سنن الصلوات</span><span>حتى 5 نقاط — قابلة للتعديل</span></div>
     <div style="font-size:9px;color:var(--mu);line-height:1.6;margin:2px 8px 5px">٢ الفجر، ٤ الظهر القبلية، ٤ الظهر البعدية، ٤ العصر، ٢ المغرب، ٢ العشاء، و٣ الشفع والوتر (المجموع ٢١ ركعة)</div>
@@ -153,7 +153,6 @@ const ROWS=[
   {cat:'القرآن',ibada:'حفظ قرآن',pts:5,fixed:true},
   {cat:'القيام',ibada:'قيام الليل — ركعتان',pts:5,fixed:true},
   {cat:'الصلاة',ibada:'ركعات ضحى',pts:5,fixed:true},
-  {cat:'الصلاة',ibada:'ركعات أوابين',pts:5,fixed:true},
   {cat:'الصلاة',ibada:'فروض الصلاة',pts:5},
   {cat:'الصلاة',ibada:'سنن الصلوات',pts:5,note:'٢ الفجر، ٤ الظهر القبلية، ٤ الظهر البعدية، ٤ العصر، ٢ المغرب، ٢ العشاء، و٣ الشفع والوتر (المجموع ٢١ ركعة)'},
   {cat:'الذكر',ibada:'صلاة على الرسول ٢٠٠',pts:5,fixed:true,note:'١٠٠ صباحاً و١٠٠ مساءً'},
@@ -166,7 +165,7 @@ const ROWS=[
 const GOAL_LABELS={};
 const GOAL_UNITS={};
 const VARIABLE_BONUS_ROWS=new Set();
-const EDITABLE_BASIC_ROWS=new Set([9,10]);
+const EDITABLE_BASIC_ROWS=new Set([8,9]);
 const CAT_ORDER=['الأذكار','القرآن','القيام','الصلاة','الذكر','صدقة'];
 let girlsData=[];
 const sk=(r,d)=>r+'-'+d;
