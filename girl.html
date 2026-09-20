@@ -156,10 +156,13 @@ window.APP_VERSION = "2026.09.12.3";
     <div class="sec-title">الأذكار</div><div class="row"><span>أذكار الصباح / المساء / النوم</span><span>5 نقاط لكل عبادة</span></div>
     <div class="sec-title">القرآن</div>
     <div class="row"><span>ثلث البقرة / جزء قرآن / حفظ قرآن</span><span>5 نقاط لكل عبادة</span></div>
+    <div style="font-size:9px;color:#b8860b;line-height:1.6;margin:2px 8px 5px">البدائل: ثلث البقرة ← ورد يا لطيف &nbsp;|&nbsp; جزء القرآن ← ٣ مرات أسماء الله الحسنى مع دعائها</div>
     <div class="sec-title">القيام</div>
     <div class="row"><span>قيام الليل — ركعتان</span><span>5 نقاط</span></div>
+    <div style="font-size:9px;color:#b8860b;line-height:1.6;margin:2px 8px 5px">البديل: صيغ الاستغفار</div>
     <div class="sec-title">الصلاة</div>
     <div class="row"><span>ركعات الضحى</span><span>5 نقاط</span></div>
+    <div style="font-size:9px;color:#b8860b;line-height:1.6;margin:2px 8px 5px">البديل: صيغ الحوقلة</div>
     <div class="row"><span>فروض الصلاة</span><span>حتى 5 نقاط — قابلة للتعديل</span></div>
     <div class="row"><span>سنن الصلوات</span><span>حتى 5 نقاط — قابلة للتعديل</span></div>
     <div style="font-size:9px;color:var(--mu);line-height:1.6;margin:2px 8px 5px">٢ الفجر، ٤ الظهر القبلية، ٤ الظهر البعدية، ٤ العصر، ٢ المغرب، ٢ العشاء، و٣ الشفع والوتر (المجموع ٢١ ركعة)</div>
@@ -245,11 +248,11 @@ const ROWS=[
   {cat:'الأذكار',ibada:'أذكار الصباح',pts:5,fixed:true},
   {cat:'الأذكار',ibada:'أذكار المساء',pts:5,fixed:true},
   {cat:'الأذكار',ibada:'أذكار النوم',pts:5,fixed:true},
-  {cat:'القرآن',ibada:'ثلث البقرة',pts:5,fixed:true},
-  {cat:'القرآن',ibada:'جزء قرآن',pts:5,fixed:true},
+  {cat:'القرآن',ibada:'ثلث البقرة',pts:5,fixed:true,badil:'بديل: ورد يا لطيف'},
+  {cat:'القرآن',ibada:'جزء قرآن',pts:5,fixed:true,badil:'بديل: ٣ مرات أسماء الله الحسنى مع دعائها'},
   {cat:'القرآن',ibada:'حفظ قرآن',pts:5,fixed:true},
-  {cat:'القيام',ibada:'قيام الليل — ركعتان',pts:5,fixed:true},
-  {cat:'الصلاة',ibada:'ركعات ضحى',pts:5,fixed:true},
+  {cat:'القيام',ibada:'قيام الليل — ركعتان',pts:5,fixed:true,badil:'بديل: صيغ الاستغفار'},
+  {cat:'الصلاة',ibada:'ركعات ضحى',pts:5,fixed:true,badil:'بديل: صيغ الحوقلة'},
   {cat:'الصلاة',ibada:'فروض الصلاة',pts:5,badil:'٣٣ الباقيات الصالحات عن كل صلاة وسنتها'},
   {cat:'الصلاة',ibada:'سنن الصلوات',pts:5,badil:'٣٣ الباقيات الصالحات عن كل صلاة وسنتها',note:'٢ الفجر، ٤ الظهر القبلية، ٤ الظهر البعدية، ٤ العصر، ٢ المغرب، ٢ العشاء، و٣ الشفع والوتر (المجموع ٢١ ركعة)'},
   {cat:'الذكر',ibada:'صلاة على الرسول ٢٠٠',pts:5,fixed:true,note:'١٠٠ صباحاً و١٠٠ مساءً'},
