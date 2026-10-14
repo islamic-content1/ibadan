@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
   
@@ -125,7 +124,7 @@ tr.tr-day td.pts-total{background:var(--primary-dark);font-size:11px;font-weight
 #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(60px);background:var(--primary-dark);color:#fff;font-size:13px;padding:9px 22px;border-radius:30px;opacity:0;transition:all .3s;pointer-events:none;z-index:9999;white-space:nowrap}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
-<link rel="manifest" href="manifest.json?v=2026.09.12.3">
+<link rel="manifest" href="manifest.json?v=2026.10.14.1">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -140,13 +139,109 @@ tr.tr-day td.pts-total{background:var(--primary-dark);font-size:11px;font-weight
 .update-toast button{background:#fff;color:#0f4a28;border:none;border-radius:9px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Amiri',serif!important;white-space:nowrap}
 </style>
 <script>
-window.APP_VERSION = "2026.09.12.3";
+window.APP_VERSION = "2026.10.14.1";
 </script>
+<style>
+/* ===== طبقة التصميم الراقي (ألوان وظلال فقط — بدون تغيير على المنطق) ===== */
+:root{
+  --gL:#e3f1e8;--gM:#3f8f63;--gD:#17603d;--gDD:#0f4a2e;
+  --rL:#f8e1de;--rM:#d98c82;--rD:#a93226;--gold:#a8843a;
+  --bg:#f7f3ea;--sf:#fffdf9;--bd:#e7decb;--tx:#2a2418;--mu:#86775c;
+  --primary:#17603d;--primary-dark:#0f4a2e;--primary-light:#eef6f1;
+  --done-bg:#e3f1e8;--done-border:#7fb896;--done-text:#17603d;
+  --miss-bg:#f8e1de;--miss-border:#d98c82;--miss-text:#a93226;
+  --gold2:#c9a75a;--gold3:#ead9a8;--goldBg:#fbf6e9;--bd2:#efe8d9;
+  --sh:0 1px 2px rgba(60,45,20,.05),0 8px 24px -10px rgba(60,45,20,.18);
+}
+body{background:var(--bg);padding:1rem .75rem 3rem;
+  background-image:radial-gradient(circle at 100% 0,rgba(201,167,90,.10),transparent 40%),radial-gradient(circle at 0 100%,rgba(23,96,61,.06),transparent 45%);background-attachment:fixed}
+.hdr,.how-box,.leg,.nr,.tw,.gc,.gc2,.btns,.note,.status-bar{max-width:720px;margin-left:auto;margin-right:auto}
+.sv,.cell-pts,.qiyam-num,.counter-val,.pts-inline-input,tr.tr-day td,td.pc,thead th.td{font-family:'Tajawal','Amiri',sans-serif!important;font-variant-numeric:tabular-nums}
+
+/* الهيدر */
+.hdr{position:relative;overflow:hidden;border:none;border-radius:22px;padding:1.6rem 1rem 1.3rem;margin-bottom:1rem;color:#fff;
+  background:linear-gradient(160deg,#0a2f1e 0%,var(--gDD) 45%,var(--gD) 100%);box-shadow:0 1px 2px rgba(60,45,20,.06),0 14px 34px -14px rgba(60,45,20,.35)}
+.hdr::before{content:"";position:absolute;inset:0;opacity:.13;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23e8d49a' stroke-width='1'%3E%3Cpath d='M28 6l6 16 16 6-16 6-6 16-6-16-16-6 16-6z'/%3E%3Crect x='17' y='17' width='22' height='22' transform='rotate(45 28 28)'/%3E%3C/g%3E%3C/svg%3E");background-size:56px 56px}
+.hdr::after{content:"";position:absolute;inset:8px;border:1px solid rgba(234,217,168,.35);border-radius:16px;pointer-events:none}
+.hdr>*{position:relative}
+.bsm{color:var(--gold3);font-size:16px}
+.hdr h1{font-size:34px;line-height:1.25;text-shadow:none;background:linear-gradient(180deg,#f6e7b8,#c9a75a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.orn{display:flex;align-items:center;justify-content:center;gap:10px;margin:6px auto 4px}
+.orn i{display:block;height:1px;width:56px;background:linear-gradient(90deg,transparent,var(--gold2))}
+.orn i:last-child{background:linear-gradient(90deg,var(--gold2),transparent)}
+.orn b{width:7px;height:7px;transform:rotate(45deg);background:var(--gold2);display:block}
+.journey-quote{color:#fff;font-size:15px;line-height:2}
+.journey-quote span{color:var(--gold3);font-size:13.5px}
+.hdr p{display:inline-block;color:rgba(255,255,255,.85);font-size:12px;margin-top:10px;background:rgba(255,255,255,.08);border:1px solid rgba(234,217,168,.25);border-radius:20px;padding:4px 14px}
+
+/* طريقة الحساب */
+.how-box{border:1px solid var(--bd);border-radius:18px;box-shadow:var(--sh);background:var(--sf)}
+.how-hdr{background:transparent;color:var(--gDD);font-size:16px;padding:12px 15px}
+.how-hdr #howArr{font-size:10px;color:var(--gM)}
+.how-body{border-top:1px solid var(--bd2);font-size:12px}
+.how-body .sec-title{font-size:14px;color:var(--gD);margin:12px 0 5px;display:flex;align-items:center;gap:7px}
+.how-body .sec-title::before{content:"";width:6px;height:6px;transform:rotate(45deg);background:var(--gold2)}
+.how-body .row{padding:6px 10px;border-radius:9px;margin-bottom:3px}
+
+/* الدليل والاسم */
+.leg{gap:8px;margin-bottom:.9rem}
+.li{background:var(--sf);border:1px solid var(--bd);border-radius:20px;padding:4px 11px;font-size:12px}
+.ld{width:14px;height:14px;border-radius:4px;border-width:1px}
+.nr{background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:8px 12px;box-shadow:var(--sh);margin-bottom:1rem}
+.nr label{font-size:14px;color:var(--gDD);font-weight:700}
+.nr input{flex:1;max-width:260px;border:1px solid var(--bd);border-radius:11px;padding:8px 12px;font-size:14px;background:#fff}
+.nr input:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(201,167,90,.15)}
+
+/* الجدول */
+.tw{border-radius:18px;border:1px solid var(--bd);box-shadow:var(--sh);background:var(--sf)}
+thead th{background:var(--gDD);border-bottom:2px solid var(--gold2);font-weight:700}
+thead th.tc{background:#0a3a24}
+td.cc{background:var(--primary-light);color:var(--gDD);border-color:var(--bd2)}
+td.ic{border-color:var(--bd2);font-size:11px}
+td.pc{background:#fbf8f1;border-color:var(--bd2);color:var(--mu)}
+td.cell{border-color:var(--bd2);transition:background .15s}
+td.cell:active{background:#f3eee2}
+td.cell.done{background:var(--done-bg);box-shadow:inset 0 0 0 1px rgba(127,184,150,.45)}
+td.cell.miss{background:var(--miss-bg);box-shadow:inset 0 0 0 1px rgba(217,140,130,.45)}
+tbody tr:nth-child(even) td.ic{background:#fdfbf6}
+tr.tr-day td{background:var(--gDD);border-top:2px solid var(--gold2)}
+tr.tr-day td.lbl,tr.tr-day td.pts-total{background:#0a3a24}
+tr.tr-day td.pts-total{color:var(--gold3)}
+.pdf-btn{border-radius:7px;background:var(--goldBg);border-color:var(--gold3);color:#7a5d1e}
+
+/* الإحصائيات */
+.gc{gap:9px;margin-bottom:9px}
+.sc{border-radius:16px;border:1px solid var(--bd);box-shadow:var(--sh);background:var(--sf);position:relative;overflow:hidden;padding:12px 8px}
+.sc::before{content:"";position:absolute;top:0;right:22%;left:22%;height:2px;border-radius:0 0 4px 4px;background:linear-gradient(90deg,transparent,var(--gold2),transparent)}
+.sv{color:var(--gDD);font-size:24px}
+.sc.pct-box{background:linear-gradient(135deg,#f3f9f5,#e3f1e8);border-color:#cfe5d7}
+#pctDayVal{color:var(--gDD)!important;font-size:26px!important}
+
+/* الأزرار */
+.btn{border-radius:14px;padding:12px;font-size:14px;transition:transform .15s}
+.btn:active{transform:scale(.98)}
+.btn-send{background:linear-gradient(180deg,var(--gD),var(--gDD));box-shadow:0 8px 18px -10px rgba(15,74,46,.8)}
+.btn-report{background:var(--goldBg);color:#6f5419;border:1px solid var(--gold3);box-shadow:var(--sh)}
+.btn-reset{background:transparent;color:var(--rD);border:1px solid #e6bcb6}
+.note{font-size:11.5px}
+.status-bar{border-radius:12px}
+
+/* النوافذ */
+.overlay{background:rgba(20,16,8,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.modal-box{border-radius:20px;box-shadow:0 24px 60px -20px rgba(0,0,0,.45)}
+#resetModal .modal-box>div:first-child{background:var(--rD)!important}
+.pdf-header{background:var(--gDD)}
+#toast{background:#0b3622;border:1px solid rgba(234,217,168,.3);box-shadow:0 10px 24px -10px rgba(0,0,0,.5)}
+.update-toast{background:#0b3622;border:1px solid rgba(234,217,168,.3)}
+@media (min-width:600px){.hdr h1{font-size:40px}}
+</style>
 </head>
 <body>
 <div class="hdr">
   <div class="bsm">بسم الله الرحمن الرحيم</div>
   <h1>برنامج عبادة</h1>
+  <div class="orn"><i></i><b></b><i></i></div>
   <div class="journey-quote">فِي رحلة العمر والأيام مسرعة<br>لا تنس من أنت أو ما وجهة السفر<br><span> أنت = مسلم &nbsp;|&nbsp; وجهة السفر = الجنة</span></div>
   <p>كبسة = عملته ✓ &nbsp;|&nbsp; كبستين = ما عملته ✗ &nbsp;|&nbsp; ثلاث = إلغاء</p>
 </div>
